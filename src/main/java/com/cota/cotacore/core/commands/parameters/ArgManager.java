@@ -17,6 +17,7 @@ public class ArgManager {
     private HashMap<String, ArgManager> arguments = new HashMap<>();
 
 
+
     // Variable to store dynamic arguments manager
     private ArgManager dynamicArguments = null;
 
