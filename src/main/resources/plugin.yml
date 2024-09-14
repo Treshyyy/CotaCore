@@ -1,0 +1,4 @@
+name: CotaCore
+version: '${project.version}'
+main: com.cota.cotacore.CotaCore
+api-version: 1.13

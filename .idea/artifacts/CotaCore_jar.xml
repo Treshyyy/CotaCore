@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CotaCore:jar">
+    <output-path>$PROJECT_DIR$/../../mc files/Lajos-1.21/plugins</output-path>
+    <root id="archive" name="CotaCore.jar">
+      <element id="module-output" name="CotaCore" />
+    </root>
+  </artifact>
+</component>
