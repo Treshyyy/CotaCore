@@ -21,9 +21,9 @@ public class FileHandlers {
     public FileHandlers(String path, String fileName) {
         this.file = new File(path, fileName);
         if (!file.exists()) {
-            file.getParentFile().mkdir();
+            file.getParentFile().mkdirs();
 
-            CotaCore.INSTANCE.saveResource(fileName, false);
+            CotaCore.INSTANCE.getUserPlugin().saveResource(fileName, false);
 
         }
         this.config = YamlConfiguration.loadConfiguration(file);
