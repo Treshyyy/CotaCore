@@ -21,12 +21,8 @@ public class FileHandlers {
     public FileHandlers(String path, String fileName) {
         this.file = new File(path, fileName);
         if (!file.exists()) {
-            try {
-                file.createNewFile();
+            file.mkdir();
 
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         this.config = YamlConfiguration.loadConfiguration(file);
 

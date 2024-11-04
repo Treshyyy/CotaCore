@@ -35,6 +35,9 @@ public class DamageHandler {
             if (livingEntity instanceof Player target) {
                 PopTotemUtil.pop(target);
 
+            }else {
+
+                livingEntity.damage(999999999);
             }
         }else {
             if (!livingEntity.isDead()) {
