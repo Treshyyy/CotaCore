@@ -23,7 +23,10 @@ public class FileHandlers {
         if (!file.exists()) {
             file.getParentFile().mkdirs();
 
-            CotaCore.INSTANCE.getUserPlugin().saveResource(fileName, false);
+            if (CotaCore.INSTANCE.getUserPlugin().getResource(fileName) != null) {
+                CotaCore.INSTANCE.getUserPlugin().saveResource(fileName, false);
+
+            }
 
         }
         this.config = YamlConfiguration.loadConfiguration(file);
