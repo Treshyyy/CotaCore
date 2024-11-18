@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public class CotaCore extends JavaPlugin implements LoadMethods {
+public abstract class CotaCore extends JavaPlugin {
 
 
     public static CotaCore INSTANCE;
@@ -52,27 +52,23 @@ public class CotaCore extends JavaPlugin implements LoadMethods {
         return this;
     }
 
-    @Override
     public String name() {
         return "CotaCore";
     }
 
-    @Override
+
     public void CoreLoad() {
 
     }
 
-    @Override
     public void CoreUnload() {
 
     }
 
-    @Override
     public String playerDataPath() {
         return getUserPlugin().getDataFolder() + "/playerdata";
     }
 
-    @Override
     public String version() {
         return "1.0.0";
     }
