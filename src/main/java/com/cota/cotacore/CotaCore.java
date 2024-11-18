@@ -14,13 +14,7 @@ public abstract class CotaCore extends JavaPlugin {
 
 
 
-    public void onCoreLoad() {
 
-    }
-
-    public void onCoreUnLoad() {
-
-    }
     @Override
     public void onEnable() {
 
@@ -33,7 +27,7 @@ public abstract class CotaCore extends JavaPlugin {
             pdf.mkdirs();
         }
         //new CotaListener().register();
-        onCoreLoad();
+        CoreLoad();
 
 
     }
@@ -45,7 +39,7 @@ public abstract class CotaCore extends JavaPlugin {
         INSTANCE = this;
         Design.showShutdownMessage();
         //((CraftServer) CotaCore.INSTANCE.getUserPlugin().getServer()).getCommandMap().clearCommands();
-        onCoreUnLoad();
+        CoreUnload();
     }
 
     public JavaPlugin getUserPlugin() {
