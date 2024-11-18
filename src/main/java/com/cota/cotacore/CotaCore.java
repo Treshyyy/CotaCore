@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.lang.reflect.Field;
 
-public class CotaCore extends JavaPlugin {
+public class CotaCore extends JavaPlugin implements LoadMethods {
 
 
     public static CotaCore INSTANCE;
@@ -32,7 +32,7 @@ public class CotaCore extends JavaPlugin {
         AbstractMenu.SetupAbstractMenu(this.getUserPlugin());
         Design.showStartupMessage();
         this.getUserPlugin().saveDefaultConfig();
-        File pdf = new File(getPlayerDataPath());
+        File pdf = new File(playerDataPath());
         if(!pdf.exists()) {
             pdf.mkdirs();
         }
@@ -55,18 +55,29 @@ public class CotaCore extends JavaPlugin {
     public JavaPlugin getUserPlugin() {
         return this;
     }
-    public String getPlayerDataPath() {
-        return getUserPlugin().getDataFolder() + "/playerdata";
-    }
 
-
-
-    public String getVersion() {
-        return "1.0.0";
-    }
-
-    public String getPluginName() {
+    @Override
+    public String name() {
         return "CotaCore";
     }
 
+    @Override
+    public void CoreLoad() {
+
+    }
+
+    @Override
+    public void CoreUnload() {
+
+    }
+
+    @Override
+    public String playerDataPath() {
+        return getUserPlugin().getDataFolder() + "/playerdata";
+    }
+
+    @Override
+    public String version() {
+        return "1.0.0";
+    }
 }

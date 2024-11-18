@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 public class PlayerData extends FileHandlers {
 
     public PlayerData(OfflinePlayer p) {
-        super( CotaCore.INSTANCE.getPlayerDataPath(), p.getUniqueId().toString() + ".yml");
+        super( CotaCore.INSTANCE.playerDataPath(), p.getUniqueId().toString() + ".yml");
     }
 
     public FileConfiguration getConfig() {
