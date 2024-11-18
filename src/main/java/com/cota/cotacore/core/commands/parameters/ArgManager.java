@@ -48,7 +48,7 @@ public class ArgManager {
             int last_index = args.length - 1;
 
             if (permission() != null && !sender.hasPermission(permission())) {
-                sender.sendMessage(main.noPerm());
+                sender.sendMessage(main.permissionMessage());
                 return;
             }
             // Check if the last argument matches a static argument

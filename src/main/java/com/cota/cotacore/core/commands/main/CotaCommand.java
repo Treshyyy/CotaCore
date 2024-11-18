@@ -4,8 +4,8 @@ package com.cota.cotacore.core.commands.main;
 import com.cota.cotacore.CotaCore;
 import com.cota.cotacore.core.commands.parameters.ArgManager;
 import com.cota.cotacore.core.commands.utils.CommandUtils;
+import com.cota.cotacore.core.interfaces.CommandMethods;
 import com.cota.cotacore.core.interfaces.Register;
-import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 // Main command class implementing CommandExecutor and Register
-public class CotaCommand implements CommandExecutor, Register {
+public class CotaCommand implements CommandExecutor, Register, CommandMethods {
 
     // HashMap to store arguments and their corresponding managers
     private HashMap<String, ArgManager> arguments = new HashMap<>();
@@ -35,12 +35,12 @@ public class CotaCommand implements CommandExecutor, Register {
     }
 
     // Method to execute command with arguments
-    public void executeArgs(@NotNull CommandSender sender, @NotNull String[] args) {
+    private void executeArgs(@NotNull CommandSender sender, @NotNull String[] args) {
         String first_argument = args[0];
         if (this.containsArgument(first_argument)) {
             // Handle argument if it exists in the arguments map
             if (this.getArgumentClass(first_argument).permission() != null && !sender.hasPermission(this.getArgumentClass(first_argument).permission())) {
-                sender.sendMessage(noPerm());
+                sender.sendMessage(permissionMessage());
                 return;
             }
             if (args.length == 1) {
@@ -64,45 +64,45 @@ public class CotaCommand implements CommandExecutor, Register {
     }
 
     // Method to add static or dynamic arguments
-    public void addArguments(ArgManager args) {
+    private void addArguments(ArgManager args) {
         addArguments(args, true);
     }
 
     // Overloaded method to add arguments with optional tab completion
-    public void addArguments(ArgManager args, boolean useTabComplete) {
+    private void addArguments(ArgManager args, boolean useTabComplete) {
 
 
         if (args.name() == null) {
-            // Add as dynamic argument if no name is provided
+            // Add as dynamic argument if no command is provided
             addDynamicArgument(args);
         } else {
-            String name = args.name();
-            addArguments(name, args);
+            String command = args.name();
+            addArguments(command, args);
             stored_arguments.add(args);
         }
 
         if (useTabComplete) {
             // Add tab completion for the argument
             TabHandler th = getTabHandler();
-            th.addTabComplete(1, new ArrayList<>(List.of(args.name())), this.name());
+            th.addTabComplete(1, new ArrayList<>(List.of(args.name())), this.command());
 
         }
     }
 
     // Overloaded method to add arguments with custom tab completions
-    public void addArguments(ArgManager args, ArrayList<String> tab) {
+    private void addArguments(ArgManager args, ArrayList<String> tab) {
         addArguments(args, tab, true);
     }
 
     // Overloaded method to add arguments with custom tab completions and optional tab completion flag
-    public void addArguments(ArgManager args, ArrayList<String> tab, boolean useTabComplete) {
+    private void addArguments(ArgManager args, ArrayList<String> tab, boolean useTabComplete) {
 
         if (args.dynamic()) {
             // Add as dynamic argument if dynamic flag is true
             addDynamicArgument(args);
         } else {
-            String name = args.name();
-            addArguments(name, args);
+            String command = args.name();
+            addArguments(command, args);
             stored_arguments.add(args);
         }
 
@@ -110,7 +110,7 @@ public class CotaCommand implements CommandExecutor, Register {
             // Add tab completion for the argument
             TabHandler th = getTabHandler();
 
-            th.addTabComplete(1, tab, this.name());
+            th.addTabComplete(1, tab, this.command());
 
         }
     }
@@ -129,7 +129,7 @@ public class CotaCommand implements CommandExecutor, Register {
 
             if (args.length > 0) executeArgs(p, args);
             else if (permission() != null && !sender.hasPermission(permission())) {
-                sender.sendMessage(noPerm());
+                sender.sendMessage(permissionMessage());
                 return true;
             }
             else execute(p);
@@ -141,25 +141,13 @@ public class CotaCommand implements CommandExecutor, Register {
     }
 
     // Methods to provide default command attributes (can be overridden)
-    public String permission() {
-        return null;
-    }
-
-    public String noPerm() {
-        return "You don't have permission to perform this command!";
-    }
+   
 
     public boolean onlyPlayer() {
         return true;
     }
 
-    public String usage() {
-        return "usage: /command";
-    }
-
-    public String name() {
-        return null;
-    }
+    
 
     // Method to get the singleton TabHandler instance
     public TabHandler getTabHandler() {
@@ -167,23 +155,23 @@ public class CotaCommand implements CommandExecutor, Register {
     }
 
     // Methods to manage argument classes
-    public ArgManager getArgumentClass(String arg) {
+    private ArgManager getArgumentClass(String arg) {
         return arguments.get(arg);
     }
 
-    public boolean containsArgument(String arg) {
+    private boolean containsArgument(String arg) {
         return arguments.containsKey(arg);
     }
 
-    public void addArguments(String name, ArgManager arg) {
-        this.arguments.put(name, arg);
+    private void addArguments(String command, ArgManager arg) {
+        this.arguments.put(command, arg);
     }
 
     public ArgManager getDynamicArgumentClass() {
         return dynamicArguments;
     }
 
-    public void addDynamicArgument(ArgManager dynamicArguments) {
+    private void addDynamicArgument(ArgManager dynamicArguments) {
         this.dynamicArguments = dynamicArguments;
     }
 
@@ -194,7 +182,7 @@ public class CotaCommand implements CommandExecutor, Register {
     // Method to register the command
     @Override
     public void register() {
-        CotaCore.INSTANCE.getUserPlugin().getCommand(name()).setExecutor(this);
+        CotaCore.INSTANCE.getUserPlugin().getCommand(command()).setExecutor(this);
         TabHandler th = getTabHandler();
         HashMap<Integer, HashMap<ArrayList<String>, ArrayList<String>>> fixedTabCompletes =CommandUtils.getFixedTabCompletes(tabCompletes);
         for (Integer keys: fixedTabCompletes.keySet()) {
@@ -202,7 +190,7 @@ public class CotaCommand implements CommandExecutor, Register {
                 th.addTabComplete(keys, tabs, fixedTabCompletes.get(keys).get(tabs));
             }
         }
-        CotaCore.INSTANCE.getUserPlugin().getCommand(name()).setTabCompleter(getTabHandler());
+        CotaCore.INSTANCE.getUserPlugin().getCommand(command()).setTabCompleter(getTabHandler());
 
 
 
@@ -216,4 +204,23 @@ public class CotaCommand implements CommandExecutor, Register {
     }
 
 
+    @Override
+    public String permission() {
+        return null;
+    }
+
+    @Override
+    public String permissionMessage() {
+        return "No permission!";
+    }
+
+    @Override
+    public String usage() {
+        return "Usage: /command";
+    }
+
+    @Override
+    public String command() {
+        return null;
+    }
 }

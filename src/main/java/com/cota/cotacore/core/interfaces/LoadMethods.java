@@ -1,4 +1,4 @@
-package com.cota.cotacore;
+package com.cota.cotacore.core.interfaces;
 
 public interface LoadMethods {
 

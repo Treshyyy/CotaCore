@@ -1,15 +1,11 @@
 package com.cota.cotacore;
 
-import com.cota.cotacore.core.commands.main.CotaCommand;
-import com.cota.cotacore.core.listener.CotaListener;
+import com.cota.cotacore.core.interfaces.LoadMethods;
 import com.cota.cotacore.core.managers.menu.AbstractMenu;
 import com.cota.cotacore.main.Design;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandMap;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.lang.reflect.Field;
 
 public class CotaCore extends JavaPlugin implements LoadMethods {
 
