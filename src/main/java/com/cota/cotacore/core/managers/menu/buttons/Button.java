@@ -85,7 +85,7 @@ public class Button implements Listener {
     }
 
     ///This is a method that will be overridden in the class that extends this class
-    public void onButtonClick(Player player, ClickType clickType, Inventory inventory, ItemStack itemStack) {
+    public void onButtonClick(InventoryClickEvent e) {
     }
  
 
@@ -98,7 +98,7 @@ public class Button implements Listener {
         if (menu.getNextPageClass() == null) {
             if (e.getInventory().equals(menu.getMenu())) {
                 if (e.getCurrentItem().equals(itemStack)) {
-                    onButtonClick(p, e.getClick(), e.getInventory(), e.getCurrentItem()); ///Calling the onButtonClick method which will be overridden in the class that extends this class
+                    onButtonClick(e); ///Calling the onButtonClick method which will be overridden in the class that extends this class
                     e.setCancelled(true); ///Cancelling the event
                 }
             }
@@ -107,7 +107,7 @@ public class Button implements Listener {
 
             //Making sure the buttons are not removable even in the new pages!
             if (e.getCurrentItem().equals(itemStack)) {
-                onButtonClick(p, e.getClick(), e.getInventory(), e.getCurrentItem()); ///Calling the onButtonClick method which will be overridden in the class that extends this class
+                onButtonClick(e); ///Calling the onButtonClick method which will be overridden in the class that extends this class
                 e.setCancelled(true); ///Cancelling the event
             }
 
