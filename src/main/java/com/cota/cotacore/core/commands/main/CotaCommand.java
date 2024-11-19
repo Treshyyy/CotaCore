@@ -64,12 +64,12 @@ public class CotaCommand implements CommandExecutor, Register, CommandMethods {
     }
 
     // Method to add static or dynamic arguments
-    private void addArguments(ArgManager args) {
+    public void addArguments(ArgManager args) {
         addArguments(args, true);
     }
 
     // Overloaded method to add arguments with optional tab completion
-    private void addArguments(ArgManager args, boolean useTabComplete) {
+    public void addArguments(ArgManager args, boolean useTabComplete) {
 
 
         if (args.name() == null) {
@@ -90,12 +90,12 @@ public class CotaCommand implements CommandExecutor, Register, CommandMethods {
     }
 
     // Overloaded method to add arguments with custom tab completions
-    private void addArguments(ArgManager args, ArrayList<String> tab) {
+    public void addArguments(ArgManager args, ArrayList<String> tab) {
         addArguments(args, tab, true);
     }
 
     // Overloaded method to add arguments with custom tab completions and optional tab completion flag
-    private void addArguments(ArgManager args, ArrayList<String> tab, boolean useTabComplete) {
+    public void addArguments(ArgManager args, ArrayList<String> tab, boolean useTabComplete) {
 
         if (args.dynamic()) {
             // Add as dynamic argument if dynamic flag is true
