@@ -98,8 +98,11 @@ public class Button implements Listener {
         if (menu.getNextPageClass() == null) {
             if (e.getInventory().equals(menu.getMenu())) {
                 if (e.getCurrentItem().equals(itemStack)) {
-                    onButtonClick(e); ///Calling the onButtonClick method which will be overridden in the class that extends this class
-                    e.setCancelled(true); ///Cancelling the event
+                    if (e.getSlot() == getIndex()) {
+                        onButtonClick(e); ///Calling the onButtonClick method which will be overridden in the class that extends this class
+                        e.setCancelled(true); ///Cancelling the event
+                    }
+
                 }
             }
         }else {
@@ -107,8 +110,10 @@ public class Button implements Listener {
 
             //Making sure the buttons are not removable even in the new pages!
             if (e.getCurrentItem().equals(itemStack)) {
-                onButtonClick(e); ///Calling the onButtonClick method which will be overridden in the class that extends this class
-                e.setCancelled(true); ///Cancelling the event
+                if (e.getSlot() == getIndex()) {
+                    onButtonClick(e); ///Calling the onButtonClick method which will be overridden in the class that extends this class
+                    e.setCancelled(true); ///Cancelling the event
+                }
             }
 
         }
