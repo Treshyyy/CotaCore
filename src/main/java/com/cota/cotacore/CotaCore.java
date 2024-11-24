@@ -1,13 +1,12 @@
 package com.cota.cotacore;
 
-import com.cota.cotacore.core.interfaces.LoadMethods;
 import com.cota.cotacore.core.managers.menu.AbstractMenu;
 import com.cota.cotacore.main.Design;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public abstract class CotaCore extends JavaPlugin {
+public class CotaCore extends JavaPlugin {
 
 
     public static CotaCore INSTANCE;

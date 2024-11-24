@@ -1,9 +1,7 @@
-package com.cota.cotacore.core.commands.main;
+package com.cota.cotacore.core.commands.old.main;
 
-import com.cota.cotacore.core.commands.parameters.ArgManager;
-import com.cota.cotacore.core.commands.utils.CommandUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import com.cota.cotacore.core.commands.old.parameters.ArgManager;
+import com.cota.cotacore.core.commands.old.utils.CommandUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -13,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class TabHandler implements TabCompleter {
 

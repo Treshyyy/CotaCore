@@ -1,9 +1,9 @@
 // Package declaration and necessary imports
-package com.cota.cotacore.core.commands.main;
+package com.cota.cotacore.core.commands.old.main;
 
 import com.cota.cotacore.CotaCore;
-import com.cota.cotacore.core.commands.parameters.ArgManager;
-import com.cota.cotacore.core.commands.utils.CommandUtils;
+import com.cota.cotacore.core.commands.old.parameters.ArgManager;
+import com.cota.cotacore.core.commands.old.utils.CommandUtils;
 import com.cota.cotacore.core.interfaces.CommandMethods;
 import com.cota.cotacore.core.interfaces.Register;
 import org.bukkit.command.*;

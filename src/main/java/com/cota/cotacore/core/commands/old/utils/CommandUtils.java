@@ -1,8 +1,7 @@
-package com.cota.cotacore.core.commands.utils;
+package com.cota.cotacore.core.commands.old.utils;
 
-import com.cota.cotacore.core.commands.main.CotaCommand;
-import com.cota.cotacore.core.commands.parameters.ArgManager;
-import org.bukkit.Bukkit;
+import com.cota.cotacore.core.commands.old.main.CotaCommand;
+import com.cota.cotacore.core.commands.old.parameters.ArgManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

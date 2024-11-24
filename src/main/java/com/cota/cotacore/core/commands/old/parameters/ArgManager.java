@@ -1,14 +1,11 @@
-package com.cota.cotacore.core.commands.parameters;
+package com.cota.cotacore.core.commands.old.parameters;
 
-import com.cota.cotacore.core.commands.main.CotaCommand;
-import com.cota.cotacore.core.commands.main.TabHandler;
-import org.bukkit.Bukkit;
+import com.cota.cotacore.core.commands.old.main.CotaCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
 
 // Class to manage command arguments
 public class ArgManager {
