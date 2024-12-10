@@ -74,49 +74,53 @@ public class CotaCommandV2 implements CommandExecutor, TabCompleter {
                 boolean found_arg = false;
                 int current_arg = args.length;
 
-                for (Method method : methods.get(current_arg)) {
-
-                    //Getting the current latest argument
-                    if (args[current_arg-1].equals(method.getName())) {
-
-                        found_arg = true;
-                        //Checking permisison
+                for (Integer i : methods.keySet()) {
+                    for (Method method : methods.get(i)) {
 
 
-                        //checking the type
-                        if (arg_type.containsKey(method.getName())) {
-                            if (!handleExecuteType(arg_type.get(method.getName()))) {
-                                return;
-                            }
-                        }
 
-                        if (arg_permission.containsKey(method.getName())) {
-                            if (cs instanceof Player p) {
-                                if (!p.hasPermission(arg_permission.get(method.getName()))) {
-                                    tell(perm_message);
+                        //Getting the current latest argument
+                        if (args[i].equals(method.getName())) {
+
+                            found_arg = true;
+                            //Checking permisison
+
+
+                            //checking the type
+                            if (arg_type.containsKey(method.getName())) {
+                                if (!handleExecuteType(arg_type.get(method.getName()))) {
                                     return;
                                 }
                             }
 
-                        }
-
-                        //Checking if a previous ARGUMENT is required for this current ARGUMENT
-                        if (req_arg_for_arg.containsKey(method.getName())) {
-                            //If the current argument requires an arg, but it is the first argument then executing the method (Non sense)
-                            if (current_arg-2 <0) {
-                                ProcessUtils.invokeMethod(method, this);
-                                return;
-                            }
-                            //If the current argument requires an arg, and it's a match then executing the method (Success)
-                            if (req_arg_for_arg.get(method.getName()).equals(args[current_arg-2])) {
-                                ProcessUtils.invokeMethod(method, this);
+                            if (arg_permission.containsKey(method.getName())) {
+                                if (cs instanceof Player p) {
+                                    if (!p.hasPermission(arg_permission.get(method.getName()))) {
+                                        tell(perm_message);
+                                        return;
+                                    }
+                                }
 
                             }
-                        }else {
-                            //If the current argument doesn't require an arg, then executing the method (Success)
-                            ProcessUtils.invokeMethod(method, this);
-                        }
 
+                            //Checking if a previous ARGUMENT is required for this current ARGUMENT
+                            if (req_arg_for_arg.containsKey(method.getName())) {
+                                //If the current argument requires an arg, but it is the first argument then executing the method (Non sense)
+                                if (current_arg - 2 < 0) {
+                                    ProcessUtils.invokeMethod(method, this);
+                                    return;
+                                }
+                                //If the current argument requires an arg, and it's a match then executing the method (Success)
+                                if (req_arg_for_arg.get(method.getName()).equals(args[current_arg - 2])) {
+                                    ProcessUtils.invokeMethod(method, this);
+
+                                }
+                            } else {
+                                //If the current argument doesn't require an arg, then executing the method (Success)
+                                ProcessUtils.invokeMethod(method, this);
+                            }
+
+                        }
                     }
                 }
 

@@ -222,11 +222,11 @@ public class ItemManager implements Listener {
                     if (item != null && item.equals(getItem())) {
                         if (force) {
                             p.getInventory().setItem(forceSlot, item);
-                        }else {
+                        } else {
                             if (isCrafter) {
                                 p.getInventory().setItem(new_slot, item);
 
-                            }else {
+                            } else {
                                 p.getInventory().addItem(item);
                                 container = true;
 
@@ -235,24 +235,21 @@ public class ItemManager implements Listener {
                         }
 
 
-                       // if (force) {
-                            if (!isCrafter) {
-                                if (force || container) {
-                                    e.getInventory().setItem(new_slot, old_item);
-                                }
-                            } else {
-                                if (force) {
-                                    p.getInventory().setItem(new_slot, old_item);
-                                }
+                        // if (force) {
+                        if (!isCrafter) {
+                            if (force || container) {
+                                e.getInventory().setItem(new_slot, old_item);
                             }
+                        } else {
+                            if (force) {
+                                p.getInventory().setItem(new_slot, old_item);
+                            }
+                        }
                         //}
 
 
-                            p.closeInventory();
-                            e.setCancelled(true);
-
-
-
+                        p.closeInventory();
+                        e.setCancelled(true);
 
 
                     }
