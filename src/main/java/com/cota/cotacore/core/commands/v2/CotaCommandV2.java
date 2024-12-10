@@ -80,7 +80,7 @@ public class CotaCommandV2 implements CommandExecutor, TabCompleter {
 
 
                         //Getting the current latest argument
-                        if (args[i].equals(method.getName())) {
+                        if (args[i-1].equals(method.getName())) {
 
                             found_arg = true;
                             //Checking permisison
