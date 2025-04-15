@@ -8,21 +8,19 @@
 **Maven**:
 __Repository:__
 ```
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+<repository>
+	<id>jitpack.io</id>
+	<url>https://jitpack.io</url>
+</repository>
 ```
 
 __Dependency:__
 ```
-	<dependency>
-	    <groupId>com.github.Treshyyy</groupId>
-	    <artifactId>CotaCore</artifactId>
-	    <version>2.1.3</version>
-	</dependency>
+<dependency>
+	<groupId>com.github.Treshyyy</groupId>
+	<artifactId>CotaCore</artifactId>
+	<version>2.1.3</version>
+</dependency>
 ```
 
   
