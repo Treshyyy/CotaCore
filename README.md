@@ -9,17 +9,17 @@
 __Repository:__
 ```
 <repository>
-	<id>jitpack.io</id>
-	<url>https://jitpack.io</url>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
 </repository>
 ```
 
 __Dependency:__
 ```
 <dependency>
-	<groupId>com.github.Treshyyy</groupId>
-	<artifactId>CotaCore</artifactId>
-	<version>2.1.3</version>
+    <groupId>com.github.Treshyyy</groupId>
+    <artifactId>CotaCore</artifactId>
+    <version>{VERSION}</version>
 </dependency>
 ```
 
