@@ -72,7 +72,7 @@ public class CotaCommandV2 implements CommandExecutor, TabCompleter {
     public void onCommand() {}
 
     public String perm_message() {
-        return "You don't have permission to do tha!";
+        return "You don't have permission to do thaasdsda!";
     }
 
     private void setupMethods() {
