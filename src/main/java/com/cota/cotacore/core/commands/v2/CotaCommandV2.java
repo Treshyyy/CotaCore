@@ -91,7 +91,7 @@ public class CotaCommandV2 implements CommandExecutor, TabCompleter {
 
     private boolean handleExecuteType(ExecuteTypes type) {
         if (type == ExecuteTypes.CONSOLE && cs instanceof Player) {
-            tell("Only CONSOLE can execute this command");
+            tell("Only CONSOLE can execute this command!");
             return false;
         } else if (type == ExecuteTypes.PLAYER && cs instanceof ConsoleCommandSender) {
             tell("Only PLAYERS can execute this command!");
